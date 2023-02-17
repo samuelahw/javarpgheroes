@@ -40,7 +40,7 @@ class ArmorTest {
 
     @Test
     void getArmorStatByAttributeIntelligence() {
-        int expected = 0;
+        int expected = 1;
         int actual = ((Armor)armor).getArmorStatByAttribute(HeroAttributeNames.INTELLIGENCE);
 
         assertEquals(expected, actual);
