@@ -1,0 +1,247 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Hero</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">Heroes</a>
+</div>
+
+<h1>Coverage Summary for Class: Hero (Heroes)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Hero</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (8/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    97,7%
+  </span>
+  <span class="absValue">
+    (42/43)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">Hero$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (9/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    97,7%
+  </span>
+  <span class="absValue">
+    (43/44)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package Heroes;
+&nbsp;
+&nbsp;import Items.*;
+&nbsp;
+&nbsp;import java.util.HashMap;
+&nbsp;import java.util.HashSet;
+&nbsp;import java.util.Set;
+&nbsp;
+&nbsp;//Hero abstract class
+&nbsp;public abstract class Hero {
+&nbsp;
+&nbsp;    protected HeroAttribute dexterity;
+&nbsp;    protected HeroAttribute intelligence;
+&nbsp;    protected HeroAttribute strength;
+&nbsp;    protected int level;
+&nbsp;    protected String heroName;
+&nbsp;
+<b class="fc">&nbsp;    protected Set&lt;WeaponType&gt; validWeapons = new HashSet&lt;&gt;();</b>
+<b class="fc">&nbsp;    protected Set&lt;ArmorType&gt; validArmor = new HashSet&lt;&gt;();</b>
+&nbsp;
+&nbsp;    protected HashMap&lt;ItemSlot, Item&gt; equipment;
+&nbsp;
+&nbsp;    public abstract void levelUp();
+&nbsp;
+<b class="fc">&nbsp;    public Hero(String name){</b>
+<b class="fc">&nbsp;        this.heroName = name;</b>
+<b class="fc">&nbsp;        this.level = 1;</b>
+<b class="fc">&nbsp;        equipment = new HashMap&lt;&gt;();</b>
+&nbsp;
+<b class="fc">&nbsp;        equipment.put(ItemSlot.WEAPON, null);</b>
+<b class="fc">&nbsp;        equipment.put(ItemSlot.HEAD, null);</b>
+<b class="fc">&nbsp;        equipment.put(ItemSlot.BODY, null);</b>
+<b class="fc">&nbsp;        equipment.put(ItemSlot.LEGS, null);</b>
+&nbsp;    }
+&nbsp;    //Getter for heroName
+&nbsp;    public String getHeroName() {
+<b class="fc">&nbsp;        return heroName;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    //Function for armor equipment
+&nbsp;    public void equipArmor(Item armor) throws InvalidArmorException{
+<b class="fc">&nbsp;            if (armor instanceof Armor) {</b>
+<b class="fc">&nbsp;                if (validArmor.contains(((Armor) armor).getArmorType())) {</b>
+<b class="fc">&nbsp;                    if (armor.getLevel() &lt;= level) {</b>
+<b class="fc">&nbsp;                        equipment.put(armor.getSlot(), armor);</b>
+&nbsp;                    } else {
+<b class="fc">&nbsp;                        throw new InvalidArmorException(&quot;Hero is too low lvl : Hero must be level &quot; + armor.getLevel() + &quot; to equip this item&quot;);</b>
+&nbsp;                    }
+&nbsp;                } else {
+<b class="fc">&nbsp;                    throw new InvalidArmorException(&quot;Wrong armor type for class: &quot; + this.getClass().getSimpleName());</b>
+&nbsp;                }
+<b class="fc">&nbsp;            } else throw new InvalidArmorException(&quot;Object is not armor&quot;);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    //Function for weapon equipment
+&nbsp;    public void equipWeapon(Item weapon) throws InvalidWeaponException{
+<b class="fc">&nbsp;            if(weapon instanceof Weapon){</b>
+<b class="fc">&nbsp;                if(validWeapons.contains(((Weapon) weapon).getWeaponType())) {</b>
+<b class="fc">&nbsp;                    if(weapon.getLevel() &lt;= level) {</b>
+<b class="fc">&nbsp;                        equipment.put(ItemSlot.WEAPON, weapon);</b>
+&nbsp;                    } else {
+<b class="fc">&nbsp;                        throw new InvalidWeaponException(&quot;Hero is too low lvl&quot;);</b>
+&nbsp;                    }
+&nbsp;                } else {
+<b class="fc">&nbsp;                    throw new InvalidWeaponException(&quot;Weapon is wrong type for class : &quot; + this.getClass().getSimpleName());</b>
+&nbsp;                }
+&nbsp;
+&nbsp;            } else {
+<b class="fc">&nbsp;                throw new InvalidWeaponException(&quot;Object is not weapon : Cant equip on weapon slot&quot;);</b>
+&nbsp;            }
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    //Function which returns hero attributes as String
+&nbsp;    public String showAttributes() {
+<b class="fc">&nbsp;        return &quot;Strength: &quot; + strength.returnStat() + &quot;, Dexterity: &quot; + dexterity.returnStat()+ &quot;, Intelligence: &quot; + intelligence.returnStat();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    //Function which return hero details as String
+&nbsp;    public String displayHero(){
+<b class="fc">&nbsp;        return  &quot;Name: &quot;+ heroName +</b>
+<b class="fc">&nbsp;                &quot;, Class: &quot; + this.getClass().getSimpleName() +</b>
+&nbsp;                &quot;, Level: &quot; + level +
+<b class="fc">&nbsp;                &quot;, Total strength: &quot; + totalAttributes(HeroAttributeNames.STRENGTH) +</b>
+<b class="fc">&nbsp;                &quot;, Total dexterity: &quot; + totalAttributes(HeroAttributeNames.DEXTERITY) +</b>
+<b class="fc">&nbsp;                &quot;, Total intelligence: &quot; + totalAttributes(HeroAttributeNames.INTELLIGENCE) +</b>
+<b class="fc">&nbsp;                &quot;, Hero damage: &quot; + getHeroDamage();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    //Function for getting attributes with attribute name.
+&nbsp;    public int totalAttributes(HeroAttributeNames attribute) {
+<b class="fc">&nbsp;        int stat = 0;</b>
+<b class="fc">&nbsp;        for(Item slot : equipment.values()) {</b>
+<b class="fc">&nbsp;            if(slot != null) {</b>
+<b class="fc">&nbsp;                if(slot instanceof Armor) stat += ((Armor) slot).getArmorStatByAttribute(attribute);</b>
+&nbsp;            }
+<b class="fc">&nbsp;        }</b>
+<b class="fc">&nbsp;        switch (attribute) {</b>
+&nbsp;            case STRENGTH -&gt; {
+<b class="fc">&nbsp;                return strength.returnStat() + stat;</b>
+&nbsp;            }
+&nbsp;            case DEXTERITY -&gt; {
+<b class="fc">&nbsp;                return dexterity.returnStat() + stat;</b>
+&nbsp;            }
+&nbsp;            case INTELLIGENCE -&gt; {
+<b class="fc">&nbsp;                return intelligence.returnStat() + stat;</b>
+&nbsp;            }
+&nbsp;        }
+<b class="nc">&nbsp;        return stat;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    //Getter for equipment
+&nbsp;    public HashMap&lt;ItemSlot, Item&gt; getEquipment() {
+<b class="fc">&nbsp;        return equipment;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public abstract int getHeroDamage();
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-02-17 19:41</div>
+</div>
+</body>
+</html>

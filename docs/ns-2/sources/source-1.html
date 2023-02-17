@@ -1,0 +1,136 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Armor</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">Items</a>
+</div>
+
+<h1>Coverage Summary for Class: Armor (Items)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Armor</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (11/11)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package Items;
+&nbsp;
+&nbsp;import Heroes.HeroAttribute;
+&nbsp;import Heroes.HeroAttributeNames;
+&nbsp;
+&nbsp;import java.util.HashMap;
+&nbsp;
+&nbsp;public class Armor extends Item{
+&nbsp;
+&nbsp;    private ArmorType armorType;
+&nbsp;
+<b class="fc">&nbsp;    private HashMap&lt;HeroAttributeNames, HeroAttribute&gt; armorAttributes = new HashMap&lt;&gt;();</b>
+&nbsp;
+<b class="fc">&nbsp;    public Armor(String name, ArmorType type, int level, ItemSlot slot, int str, int dex, int intel) {</b>
+<b class="fc">&nbsp;        itemName = name;</b>
+<b class="fc">&nbsp;        armorType = type;</b>
+<b class="fc">&nbsp;        requiredLevel = level;</b>
+<b class="fc">&nbsp;        itemSlot = slot;</b>
+<b class="fc">&nbsp;        armorAttributes.put(HeroAttributeNames.STRENGTH, new HeroAttribute(str));</b>
+<b class="fc">&nbsp;        armorAttributes.put(HeroAttributeNames.DEXTERITY, new HeroAttribute(dex));</b>
+<b class="fc">&nbsp;        armorAttributes.put(HeroAttributeNames.INTELLIGENCE, new HeroAttribute(intel));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    //Getter for armor type
+&nbsp;    public ArmorType getArmorType() {
+<b class="fc">&nbsp;        return armorType;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    //getter for armor stat attributes
+&nbsp;    public int getArmorStatByAttribute(HeroAttributeNames attribute) {
+<b class="fc">&nbsp;        return armorAttributes.get(attribute).returnStat();</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-02-17 19:41</div>
+</div>
+</body>
+</html>
