@@ -17,6 +17,7 @@ public class Mage extends Hero{
         validWeapons.add(WeaponType.WAND);
     }
 
+    //Function for leveling up hero
     @Override
     public void levelUp() {
         level++;
@@ -25,6 +26,7 @@ public class Mage extends Hero{
         intelligence.addStat(5);
     }
 
+    //Function for hero damage calculation returns damage as int
     @Override
     public int getHeroDamage() {
         if(equipment.get(ItemSlot.WEAPON) != null){

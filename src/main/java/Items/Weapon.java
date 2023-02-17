@@ -13,15 +13,12 @@ public class Weapon extends Item{
         weaponDamage = dmg;
     }
 
-    @Override
-    public int getLevel() {
-        return requiredLevel;
-    }
-
+    //Getter for weapon type
     public WeaponType getWeaponType(){
         return wType;
     }
 
+    //getter for weapon damage
     public int getWeaponDamage(){
         return weaponDamage;
     }

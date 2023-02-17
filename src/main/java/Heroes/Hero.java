@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
+//Hero abstract class
 public abstract class Hero {
 
     protected HeroAttribute dexterity;
@@ -31,12 +32,13 @@ public abstract class Hero {
         equipment.put(ItemSlot.BODY, null);
         equipment.put(ItemSlot.LEGS, null);
     }
-
+    //Getter for heroName
     public String getHeroName() {
         return heroName;
     }
-    public void equipArmor(Item armor) throws InvalidArmorException{
 
+    //Function for armor equipment
+    public void equipArmor(Item armor) throws InvalidArmorException{
             if (armor instanceof Armor) {
                 if (validArmor.contains(((Armor) armor).getArmorType())) {
                     if (armor.getLevel() <= level) {
@@ -48,11 +50,10 @@ public abstract class Hero {
                     throw new InvalidArmorException("Wrong armor type for class: " + this.getClass().getSimpleName());
                 }
             } else throw new InvalidArmorException("Object is not armor");
-
     }
 
+    //Function for weapon equipment
     public void equipWeapon(Item weapon) throws InvalidWeaponException{
-
             if(weapon instanceof Weapon){
                 if(validWeapons.contains(((Weapon) weapon).getWeaponType())) {
                     if(weapon.getLevel() <= level) {
@@ -70,10 +71,12 @@ public abstract class Hero {
 
     }
 
+    //Function which returns hero attributes as String
     public String showAttributes() {
         return "Strength: " + strength.returnStat() + ", Dexterity: " + dexterity.returnStat()+ ", Intelligence: " + intelligence.returnStat();
     }
 
+    //Function which return hero details as String
     public String displayHero(){
         return  "Name: "+ heroName +
                 ", Class: " + this.getClass().getSimpleName() +
@@ -84,6 +87,7 @@ public abstract class Hero {
                 ", Hero damage: " + getHeroDamage();
     }
 
+    //Function for getting attributes with attribute name.
     public int totalAttributes(HeroAttributeNames attribute) {
         int stat = 0;
         for(Item slot : equipment.values()) {
@@ -105,6 +109,7 @@ public abstract class Hero {
         return stat;
     }
 
+    //Getter for equipment
     public HashMap<ItemSlot, Item> getEquipment() {
         return equipment;
     }

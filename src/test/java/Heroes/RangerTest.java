@@ -1,5 +1,8 @@
 package Heroes;
 
+import Items.Item;
+import Items.Weapon;
+import Items.WeaponType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -43,6 +46,17 @@ class RangerTest {
     @Test
     void getHeroDamageWithWeaponAndArmor_shouldReturnDamage() {
         int expected = 2;
+        int actual = hero.getHeroDamage();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void getHeroDamageWithWeapon_shouldReturnDamage() throws InvalidWeaponException{
+        int expected = 48;
+
+        Item weapon = new Weapon("Longbow", WeaponType.BOW, 1,45);
+        hero.equipWeapon(weapon);
         int actual = hero.getHeroDamage();
 
         assertEquals(expected, actual);

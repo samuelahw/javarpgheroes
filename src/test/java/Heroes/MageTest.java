@@ -1,5 +1,8 @@
 package Heroes;
 
+import Items.Item;
+import Items.Weapon;
+import Items.WeaponType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -36,6 +39,17 @@ class MageTest {
     @Test
     void getHeroDamageWithWeaponAndArmor_shouldReturnDamage() {
         int expected = 2;
+        int actual = hero.getHeroDamage();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void getHeroDamageWithWeapon_shouldReturnDamage() throws InvalidWeaponException{
+        int expected = 54;
+
+        Item weapon = new Weapon("Magic Staff", WeaponType.STAFF, 1,50);
+        hero.equipWeapon(weapon);
         int actual = hero.getHeroDamage();
 
         assertEquals(expected, actual);

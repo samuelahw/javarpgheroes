@@ -16,6 +16,7 @@ public class Rogue extends Hero{
         validWeapons.add(WeaponType.SWORD);
     }
 
+    //Function for leveling up hero
     @Override
     public void levelUp() {
         level++;
@@ -24,6 +25,7 @@ public class Rogue extends Hero{
         intelligence.addStat(1);
     }
 
+    //Function for hero damage calculation returns damage as int
     @Override
     public int getHeroDamage() {
         if(equipment.get(ItemSlot.WEAPON) != null){

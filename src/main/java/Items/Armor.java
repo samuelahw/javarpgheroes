@@ -9,7 +9,6 @@ public class Armor extends Item{
 
     private ArmorType armorType;
 
-
     private HashMap<HeroAttributeNames, HeroAttribute> armorAttributes = new HashMap<>();
 
     public Armor(String name, ArmorType type, int level, ItemSlot slot, int str, int dex, int intel) {
@@ -22,10 +21,12 @@ public class Armor extends Item{
         armorAttributes.put(HeroAttributeNames.INTELLIGENCE, new HeroAttribute(intel));
     }
 
+    //Getter for armor type
     public ArmorType getArmorType() {
         return armorType;
     }
 
+    //getter for armor stat attributes
     public int getArmorStatByAttribute(HeroAttributeNames attribute) {
         return armorAttributes.get(attribute).returnStat();
     }
